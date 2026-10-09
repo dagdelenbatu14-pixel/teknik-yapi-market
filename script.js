@@ -112,8 +112,8 @@ onScroll();
 /* ── Branch tabs → map + actions ── */
 const BRANCH_ACTIONS = {
   Mumcular: [
-    ['tel:+902523736169', '0252 373 61 69', 'phone'],
     ['tel:+905384410589', '0538 441 05 89', 'phone'],
+    ['tel:+902523736169', '0252 373 61 69', 'phone'],
     ['https://www.google.com/maps/dir/?api=1&destination=37.110053,27.6587734', 'Yol tarifi', 'pin'],
   ],
   Gümbet: [
