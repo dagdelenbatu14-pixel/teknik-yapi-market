@@ -92,7 +92,7 @@ button { font: inherit; }
 /* ───────── HERO ───────── */
 .hero { position: relative; overflow: hidden; padding: 150px 0 0; background: var(--ink); isolation: isolate; }
 .hero__media { position: absolute; inset: 0; z-index: -3; }
-.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 30%; transform: scale(1.12); animation: kenburns 18s var(--ease) forwards; filter: saturate(.85) contrast(1.05); }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 45%; transform: scale(1.12); animation: kenburns 18s var(--ease) forwards; filter: saturate(.85) contrast(1.05); }
 @keyframes kenburns { to { transform: scale(1.0); } }
 .hero__shade { position: absolute; inset: 0; z-index: -2;
   background:
@@ -293,6 +293,37 @@ button { font: inherit; }
 .card.reveal.is-in:hover { transform: translateY(-8px); }
 .reveal-x { opacity: 0; transform: translateX(40px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
 .reveal-x.is-in { opacity: 1; transform: none; }
+
+
+/* ───────── HOW BANNER ───────── */
+.how__banner { position: relative; margin: 0 0 22px; border-radius: var(--r); overflow: hidden; aspect-ratio: 816 / 313; background: var(--ink); }
+.how__banner img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.how__banner:hover img { transform: scale(1.04); }
+.how__banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(18,18,20,.85) 0%, rgba(18,18,20,.35) 45%, transparent 70%); }
+.how__banner figcaption { position: absolute; z-index: 1; left: clamp(18px, 4vw, 40px); top: 50%; transform: translateY(-50%); display: grid; gap: 6px; }
+.how__banner .mono { color: var(--gold); }
+.how__banner strong { font-family: var(--f-display); font-weight: 900; font-size: clamp(1.8rem, 4vw, 3.2rem); line-height: .95; text-transform: uppercase; color: var(--white); }
+
+/* ───────── GALLERY ───────── */
+.gallery { padding: clamp(80px, 10vw, 130px) 0; background: var(--ink-2); }
+.gallery .sec-head--split .btn { margin-bottom: 24px; }
+.mosaic { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; grid-auto-flow: dense; gap: 14px; }
+.mosaic__item { position: relative; margin: 0; overflow: hidden; border-radius: var(--r); background: var(--steel); }
+.mosaic__item--tall { grid-row: span 2; }
+.mosaic__item--wide { grid-column: span 2; }
+.mosaic__item img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease), filter .6s; filter: saturate(.9) brightness(.92); }
+.mosaic__item:hover img { transform: scale(1.06); filter: saturate(1.05) brightness(1); }
+.mosaic__item figcaption { position: absolute; left: 12px; bottom: 12px; padding: 6px 10px; border-radius: 2px; background: rgba(18,18,20,.82); color: var(--white); font-family: var(--f-mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; transform: translateY(6px); opacity: .85; transition: transform .4s var(--ease), opacity .4s, background .3s; }
+.mosaic__item:hover figcaption { transform: none; opacity: 1; background: var(--gold); color: var(--ink); }
+@media (max-width: 900px) {
+  .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+  .mosaic__item--wide { grid-column: span 2; }
+}
+@media (max-width: 560px) {
+  .mosaic { grid-auto-rows: 150px; gap: 10px; }
+  .hero__media img { object-position: 38% 50%; }
+  .how__banner { aspect-ratio: 16 / 9; }
+}
 
 /* ───────── RESPONSIVE ───────── */
 @media (max-width: 1080px) {

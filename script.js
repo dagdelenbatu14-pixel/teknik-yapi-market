@@ -7,9 +7,9 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 $('#yr').textContent = new Date().getFullYear();
 
 /* ── Opening hours (Europe/Istanbul) ─────────────────────────
-   Pazartesi–Cumartesi 07:00–20:00, Pazar kapalı.
+   Hafta içi 09:00–18:00, Cumartesi 09:00–17:00, Pazar kapalı.
    Change here if the hours change. 0 = Pazar … 6 = Cumartesi */
-const HOURS = { 0: null, 1: [7, 20], 2: [7, 20], 3: [7, 20], 4: [7, 20], 5: [7, 20], 6: [7, 20] };
+const HOURS = { 0: null, 1: [9, 18], 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [9, 17] };
 
 function istanbulNow() {
   const parts = new Intl.DateTimeFormat('en-GB', {
@@ -66,7 +66,7 @@ const spy = new IntersectionObserver((entries) => {
     if (e.isIntersecting) navLinks.forEach((a) => a.classList.toggle('is-current', a.getAttribute('href') === `#${e.target.id}`));
   });
 }, { rootMargin: '-45% 0px -50% 0px' });
-['top', 'urunler', 'demir', 'nasil', 'subeler', 'teklif'].forEach((id) => spy.observe(document.getElementById(id)));
+['top', 'urunler', 'demir', 'nasil', 'magaza', 'subeler', 'teklif'].forEach((id) => spy.observe(document.getElementById(id)));
 
 /* ── Mobile menu ── */
 const toggle = $('.nav__toggle');
@@ -84,7 +84,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hi
 /* ── Reveal on scroll (staggered per group) ── */
 const groups = [
   ['.sec-head', 'reveal'], ['.card', 'reveal'], ['.steel__head', 'reveal'], ['.spec__row', 'reveal'],
-  ['.steel__photo', 'reveal-x'], ['.step', 'reveal'], ['.branch', 'reveal'], ['.branch-detail', 'reveal'],
+  ['.steel__photo', 'reveal-x'], ['.step', 'reveal'], ['.how__banner', 'reveal'], ['.mosaic__item', 'reveal'], ['.branch', 'reveal'], ['.branch-detail', 'reveal'],
   ['.quote__copy', 'reveal'], ['.qform', 'reveal'],
 ];
 const io = new IntersectionObserver((entries) => {
