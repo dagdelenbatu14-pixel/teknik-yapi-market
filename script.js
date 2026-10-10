@@ -4,7 +4,8 @@ const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-$('#yr').textContent = new Date().getFullYear();
+const yr = $('#yr');
+if (yr) yr.textContent = new Date().getFullYear();
 
 /* ── Opening hours (Europe/Istanbul) ─────────────────────────
    Hafta içi 09:00–18:00, Cumartesi 09:00–17:00, Pazar kapalı.
@@ -54,7 +55,7 @@ function onScroll() {
   nav.classList.toggle('is-scrolled', y > 24 || !$('#mobile-menu').hidden);
   const max = document.documentElement.scrollHeight - innerHeight;
   bar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
-  actionbar.classList.toggle('is-shown', y > innerHeight * 0.6);
+  if (actionbar) actionbar.classList.toggle('is-shown', y > innerHeight * 0.6);
   parallax();
   ticking = false;
 }
@@ -66,7 +67,7 @@ const spy = new IntersectionObserver((entries) => {
     if (e.isIntersecting) navLinks.forEach((a) => a.classList.toggle('is-current', a.getAttribute('href') === `#${e.target.id}`));
   });
 }, { rootMargin: '-45% 0px -50% 0px' });
-['top', 'urunler', 'demir', 'nasil', 'magaza', 'subeler', 'teklif'].forEach((id) => spy.observe(document.getElementById(id)));
+['top', 'urunler', 'demir', 'nasil', 'magaza', 'subeler', 'teklif'].forEach((id) => { const el = document.getElementById(id); if (el) spy.observe(el); });
 
 /* ── Mobile menu ── */
 const toggle = $('.nav__toggle');
@@ -145,7 +146,7 @@ $$('.branch').forEach((btn) => {
     }).join('');
   });
 });
-mapFrame.addEventListener('load', () => mapFrame.parentElement.classList.remove('is-loading'));
+if (mapFrame) mapFrame.addEventListener('load', () => mapFrame.parentElement.classList.remove('is-loading'));
 
 /* Hero branch cards → open that branch on the map below */
 $$('[data-branch]').forEach((link) => {
@@ -158,7 +159,7 @@ $$('[data-branch]').forEach((link) => {
 /* ── Product shortcuts → pre-select in the quote form ── */
 const form = $('#qform');
 const hint = $('#qhint');
-$$('[data-groups]').forEach((el) => {
+if (form) $$('[data-groups]').forEach((el) => {
   el.addEventListener('click', (e) => {
     e.preventDefault();
     const want = el.dataset.groups.split('|');
@@ -172,7 +173,7 @@ $$('[data-groups]').forEach((el) => {
 
 /* ── Quote form → WhatsApp message to the Ortakent wholesale line ── */
 const WA_NUMBER = '905384410587';
-form.addEventListener('submit', (e) => {
+if (form) form.addEventListener('submit', (e) => {
   e.preventDefault();
   const groupsSel = $$('input[name="g"]:checked', form).map((i) => i.value);
   const detail = form.detail.value.trim();
