@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dagdelenbatu14-pixel.github.io/teknik-yapi-market/sitemap.xml

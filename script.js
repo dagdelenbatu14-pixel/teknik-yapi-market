@@ -85,6 +85,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hi
 const groups = [
   ['.sec-head', 'reveal'], ['.card', 'reveal'], ['.steel__head', 'reveal'], ['.spec__row', 'reveal'],
   ['.steel__photo', 'reveal-x'], ['.step', 'reveal'], ['.how__banner', 'reveal'], ['.mosaic__item', 'reveal'], ['.branch', 'reveal'], ['.branch-detail', 'reveal'],
+  ['.faq__head', 'reveal'], ['.faq__item', 'reveal'],
   ['.quote__copy', 'reveal'], ['.qform', 'reveal'],
 ];
 const io = new IntersectionObserver((entries) => {
