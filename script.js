@@ -146,6 +146,14 @@ $$('.branch').forEach((btn) => {
 });
 mapFrame.addEventListener('load', () => mapFrame.parentElement.classList.remove('is-loading'));
 
+/* Hero branch cards → open that branch on the map below */
+$$('[data-branch]').forEach((link) => {
+  link.addEventListener('click', () => {
+    const tab = $$('.branch').find((b) => b.querySelector('.branch__name').textContent.trim() === link.dataset.branch);
+    if (tab) tab.click();
+  });
+});
+
 /* ── Product shortcuts → pre-select in the quote form ── */
 const form = $('#qform');
 const hint = $('#qhint');
