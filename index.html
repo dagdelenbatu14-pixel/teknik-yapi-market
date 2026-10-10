@@ -662,7 +662,7 @@
      "name": "Hangi inşaat malzemelerini satıyorsunuz?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Çimento, kum, tuğla ve gazbeton gibi kaba yapı malzemeleri; inşaat demiri, çelik hasır ve profil; izolasyon ve mantolama; boya; seramik, parke ve vitrifiye; tesisat, hırdavat ve elektrikli aletler. Filli Boya, Polisan, Weber, Dalmaçyalı, VitrA ve Kale gibi markalarla çalışıyoruz."
+      "text": "Çimento, kum, tuğla ve gazbeton gibi kaba malzemeler; inşaat demiri, çelik hasır ve profil; izolasyon ve mantolama; boya; seramik, parke ve vitrifiye; tesisat, hırdavat ve elektrikli aletler. Bosch, Knauf, Weber, Filli Boya, Polisan, VitrA ve Qua gibi markalarla çalışıyoruz."
      }
     },
     {
@@ -694,6 +694,14 @@
 
 <!-- ───────── NAV ───────── -->
 <header class="nav" id="nav">
+  <div class="fxbar" role="region" aria-label="Güncel döviz kurları">
+    <div class="fxbar__inner">
+      <span class="fxbar__live" title="Kurlar dakikada bir güncellenir"><i aria-hidden="true"></i><span>Canlı kur</span></span>
+      <span class="fx" data-c="USD"><b>USD</b><span class="fx__v">–</span><span class="fx__t" aria-hidden="true"></span></span>
+      <span class="fx" data-c="EUR"><b>EUR</b><span class="fx__v">–</span><span class="fx__t" aria-hidden="true"></span></span>
+      <span class="fx" data-c="GBP"><b>GBP</b><span class="fx__v">–</span><span class="fx__t" aria-hidden="true"></span></span>
+    </div>
+  </div>
   <div class="nav__inner">
     <a class="nav__brand" href="#top" aria-label="Teknik Yapı Market ana sayfa">
       <svg class="logo" viewBox="0 0 240 92" role="img" aria-label="Teknik Yapı Market"><use href="#logo-mark" /></svg>
@@ -702,7 +710,7 @@
       <a href="#urunler">Ürünler</a>
       <a href="insaat-demiri/">İnşaat Demiri</a>
       <a href="#nasil">Nasıl Sipariş?</a>
-      <a href="#magaza">Mağaza</a>
+      <a href="#magaza">Galeri</a>
       <a href="#subeler">Şubeler</a>
     </nav>
     <a class="btn btn--gold nav__cta" href="#teklif">
@@ -769,23 +777,26 @@
 
     <div class="hero__block hero__block--brands" id="markalar">
       <div class="hero__head">
-        <h2 class="hero__h">Kullandığımız markalar</h2>
+        <h2 class="hero__h">Markalarımız</h2>
       </div>
-      <ul class="logo-wall" aria-label="Kullandığımız markalar">
-          <li class="logo-tile logo-tile--filli"><img src="assets/brands/filli.png" alt="Filli Boya" title="Filli Boya" loading="eager" decoding="async" /></li>
-          <li class="logo-tile logo-tile--vitra"><img src="assets/brands/vitra.svg" alt="VitrA" title="VitrA" loading="eager" decoding="async" /></li>
-          <li class="logo-tile logo-tile--weber"><img src="assets/brands/weber.png" alt="Weber" title="Weber" loading="eager" decoding="async" /></li>
-          <li class="logo-tile logo-tile--kale"><img src="assets/brands/kale.svg" alt="Kale" title="Kale" loading="eager" decoding="async" /></li>
-          <li class="logo-tile logo-tile--polisan"><img src="assets/brands/polisan.png" alt="Polisan" title="Polisan" loading="eager" decoding="async" /></li>
-          <li class="logo-tile logo-tile--bien"><img src="assets/brands/bien.png" alt="Bien" title="Bien" loading="eager" decoding="async" /></li>
-          <li class="logo-tile logo-tile--dalmacyali"><img src="assets/brands/dalmacyali.png" alt="Dalmaçyalı" title="Dalmaçyalı" loading="eager" decoding="async" /></li>
-          <li class="logo-tile logo-tile--ege"><img src="assets/brands/ege.svg" alt="Ege Seramik" title="Ege Seramik" loading="eager" decoding="async" /></li>
-          <li class="logo-tile logo-tile--betek"><img src="assets/brands/betek.png" alt="Betek" title="Betek" loading="eager" decoding="async" /></li>
-          <li class="logo-tile logo-tile--agt"><img src="assets/brands/agt.svg" alt="AGT" title="AGT" loading="eager" decoding="async" /></li>
-          <li class="logo-tile logo-tile--dyo"><img src="assets/brands/dyo.png" alt="DYO" title="DYO" loading="eager" decoding="async" /></li>
-          <li class="logo-tile logo-tile--bocchi"><img src="assets/brands/bocchi.svg" alt="Bocchi" title="Bocchi" loading="eager" decoding="async" /></li>
-          <li class="logo-tile logo-tile--fawori"><img src="assets/brands/fawori.svg" alt="Fawori" title="Fawori" loading="eager" decoding="async" /></li>
-          <li class="logo-tile logo-tile--sanica"><img src="assets/brands/sanica.png" alt="Sanica" title="Sanica" loading="eager" decoding="async" /></li>
+      <ul class="logo-wall" aria-label="Markalarımız">
+          <li class="logo-tile logo-tile--bosch"><img src="assets/brands/bosch.svg" alt="Bosch – El aletleri" title="Bosch · El aletleri" loading="eager" decoding="async" /><span class="logo-tile__cap">El aletleri</span></li>
+          <li class="logo-tile logo-tile--knauf"><img src="assets/brands/knauf.svg" alt="Knauf – Alçı" title="Knauf · Alçı" loading="eager" decoding="async" /><span class="logo-tile__cap">Alçı</span></li>
+          <li class="logo-tile logo-tile--weber"><img src="assets/brands/weber.png" alt="Weber – Yapı kimyasalları" title="Weber · Yapı kimyasalları" loading="eager" decoding="async" /><span class="logo-tile__cap">Yapı kimyasalları</span></li>
+          <li class="logo-tile logo-tile--filli"><img src="assets/brands/filli.png" alt="Filli Boya – Boya" title="Filli Boya · Boya" loading="eager" decoding="async" /><span class="logo-tile__cap">Boya</span></li>
+          <li class="logo-tile logo-tile--vitra"><img src="assets/brands/vitra.svg" alt="VitrA – Vitrifiye" title="VitrA · Vitrifiye" loading="eager" decoding="async" /><span class="logo-tile__cap">Vitrifiye</span></li>
+          <li class="logo-tile logo-tile--qua"><img src="assets/brands/qua.png" alt="Qua – Seramik" title="Qua · Seramik" loading="eager" decoding="async" /><span class="logo-tile__cap">Seramik</span></li>
+          <li class="logo-tile logo-tile--ege"><img src="assets/brands/ege.svg" alt="Ege Seramik – Seramik" title="Ege Seramik · Seramik" loading="eager" decoding="async" /><span class="logo-tile__cap">Seramik</span></li>
+          <li class="logo-tile logo-tile--bien"><img src="assets/brands/bien.png" alt="Bien – Seramik" title="Bien · Seramik" loading="eager" decoding="async" /><span class="logo-tile__cap">Seramik</span></li>
+          <li class="logo-tile logo-tile--polisan"><img src="assets/brands/polisan.png" alt="Polisan – Boya" title="Polisan · Boya" loading="eager" decoding="async" /><span class="logo-tile__cap">Boya</span></li>
+          <li class="logo-tile logo-tile--betek"><img src="assets/brands/betek.png" alt="Betek – Boya" title="Betek · Boya" loading="eager" decoding="async" /><span class="logo-tile__cap">Boya</span></li>
+          <li class="logo-tile logo-tile--fawori"><img src="assets/brands/fawori.svg" alt="Fawori – Boya" title="Fawori · Boya" loading="eager" decoding="async" /><span class="logo-tile__cap">Boya</span></li>
+          <li class="logo-tile logo-tile--dalmacyali"><img src="assets/brands/dalmacyali.png" alt="Dalmaçyalı – Mantolama" title="Dalmaçyalı · Mantolama" loading="eager" decoding="async" /><span class="logo-tile__cap">Mantolama</span></li>
+          <li class="logo-tile logo-tile--dizayn"><img src="assets/brands/dizayn.png" alt="Dizayn Grup – Tesisat" title="Dizayn Grup · Tesisat" loading="eager" decoding="async" /><span class="logo-tile__cap">Tesisat</span></li>
+          <li class="logo-tile logo-tile--izeltas"><img src="assets/brands/izeltas.svg" alt="İzeltaş – İş güvenliği" title="İzeltaş · İş güvenliği" loading="eager" decoding="async" /><span class="logo-tile__cap">İş güvenliği</span></li>
+          <li class="logo-tile logo-tile--agt"><img src="assets/brands/agt.svg" alt="AGT – Parke" title="AGT · Parke" loading="eager" decoding="async" /><span class="logo-tile__cap">Parke</span></li>
+          <li class="logo-tile logo-tile--bocchi"><img src="assets/brands/bocchi.svg" alt="Bocchi – Banyo" title="Bocchi · Banyo" loading="eager" decoding="async" /><span class="logo-tile__cap">Banyo</span></li>
+          <li class="logo-tile logo-tile--sanica"><img src="assets/brands/sanica.png" alt="Sanica – Boru" title="Sanica · Boru" loading="eager" decoding="async" /><span class="logo-tile__cap">Boru</span></li>
       </ul>
     </div>
   </div>
@@ -805,21 +816,21 @@
     </div>
 
     <div class="cards">
-      <a class="card" data-groups="Çimento / kum|Tuğla / gazbeton" href="#teklif">
-        <figure class="card__img"><img src="assets/img/kaba-yapi.jpg" alt="Teknik Yapı Market sahasında paletli yapı malzemeleri" loading="lazy" width="800" height="600" /></figure>
-        <div class="card__body">
-          <span class="card__no mono">01</span>
-          <h3>Kaba yapı</h3>
-          <p>Kum, çimento, tuğla, gazbeton, yapıştırıcı ve harçlar.</p>
-          <span class="card__cta">Teklif iste <span aria-hidden="true">→</span></span>
-        </div>
-      </a>
       <a class="card card--steel" data-groups="İnşaat demiri|Çelik hasır|Profil / hadde" href="#teklif">
         <figure class="card__img"><img src="assets/img/demir-celik.jpg" alt="Bağlanmış inşaat demiri demetleri" loading="lazy" width="800" height="600" /></figure>
         <div class="card__body">
-          <span class="card__no mono">02</span>
+          <span class="card__no mono">01</span>
           <h3>Demir &amp; çelik</h3>
           <p>İnşaat demiri, profil ve hadde çeşitleri; çelik hasır.</p>
+          <span class="card__cta">Teklif iste <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+      <a class="card" data-groups="Çimento / kum|Tuğla / gazbeton" href="#teklif">
+        <figure class="card__img"><img src="assets/img/kaba-yapi.jpg" alt="Teknik Yapı Market sahasında paletli yapı malzemeleri" loading="lazy" width="800" height="600" /></figure>
+        <div class="card__body">
+          <span class="card__no mono">02</span>
+          <h3>Kaba malzeme</h3>
+          <p>Kum, çimento, tuğla, gazbeton, alçı, yapıştırıcı ve harçlar.</p>
           <span class="card__cta">Teklif iste <span aria-hidden="true">→</span></span>
         </div>
       </a>
@@ -864,7 +875,7 @@
         <div class="card__body">
           <span class="card__no mono">07</span>
           <h3>Hırdavat</h3>
-          <p>El aletleri, bağlantı elemanları, ölçü ve işaretleme ürünleri.</p>
+          <p>El aletleri, iş güvenliği malzemeleri, bağlantı elemanları, ölçü ve işaretleme ürünleri.</p>
           <span class="card__cta">Teklif iste <span aria-hidden="true">→</span></span>
         </div>
       </a>
@@ -959,7 +970,7 @@
   <div class="wrap">
     <div class="sec-head sec-head--split">
       <div>
-        <p class="eyebrow">Mağazalarımızdan</p>
+        <p class="eyebrow">Galeri · Mağazalarımızdan</p>
         <h2 class="h2">Binlerce ürün,<br /><em>tek çatı altında.</em></h2>
       </div>
       <a class="btn btn--line" href="https://www.instagram.com/teknikyapimarketbodrum/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-ig" /></svg>Instagram'da daha fazlası</a>
@@ -1044,7 +1055,7 @@
       </details>
       <details class="faq__item">
         <summary><span>Hangi inşaat malzemelerini satıyorsunuz?</span><i aria-hidden="true"></i></summary>
-        <p>Çimento, kum, tuğla ve gazbeton gibi kaba yapı malzemeleri; inşaat demiri, çelik hasır ve profil; izolasyon ve mantolama; boya; seramik, parke ve vitrifiye; tesisat, hırdavat ve elektrikli aletler. Filli Boya, Polisan, Weber, Dalmaçyalı, VitrA ve Kale gibi markalarla çalışıyoruz.</p>
+        <p>Çimento, kum, tuğla ve gazbeton gibi kaba malzemeler; inşaat demiri, çelik hasır ve profil; izolasyon ve mantolama; boya; seramik, parke ve vitrifiye; tesisat, hırdavat ve elektrikli aletler. Bosch, Knauf, Weber, Filli Boya, Polisan, VitrA ve Qua gibi markalarla çalışıyoruz.</p>
       </details>
       <details class="faq__item">
         <summary><span>Toptan satış yapıyor musunuz?</span><i aria-hidden="true"></i></summary>

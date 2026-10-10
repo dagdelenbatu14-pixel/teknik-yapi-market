@@ -8,7 +8,9 @@ Web için kırpılıp yeniden boyutlandırılmıştır.
 
 Logolar, mağazada satılan markaları göstermek için markaların kendi resmi
 sitelerinden alınmıştır; her logo ilgili markanın tescilli ticari markasıdır.
-Satılan markalar işletmenin Instagram paylaşımlarından doğrulanmıştır.
+Marka listesi işletme sahibinin bildirdiği şekildedir (2026-10). Koyu zeminde
+okunsun diye markaların resmi beyaz (negatif) logoları kullanılmış, yoksa
+koyu renkli yazı kısımları beyaza çevrilmiştir.
 
 | Marka | Kaynak |
 |---|---|
@@ -17,12 +19,15 @@ Satılan markalar işletmenin Instagram paylaşımlarından doğrulanmıştır.
 | Betek | betek.com.tr |
 | Dalmaçyalı | dalmacyali.com.tr |
 | Fawori | fawori.com |
-| DYO | dyo.com.tr |
 | VitrA | vitra.com.tr |
-| Kale | kale.com.tr (yazı rengi açık zemin için koyulaştırıldı) |
 | Bien | bienseramik.com.tr |
 | Ege Seramik | egeseramik.com |
 | Bocchi | bocchibagno.com |
 | AGT | agt.com.tr |
 | Sanica | sanicaboru.com.tr |
 | Weber | es.weber (Saint-Gobain Weber) |
+| Bosch | bosch-professional.com |
+| Knauf | knauf.com |
+| Qua | qua.com.tr |
+| Dizayn Grup | dizayngrup.com |
+| İzeltaş | izeltas.com.tr |
