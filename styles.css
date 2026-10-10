@@ -33,7 +33,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; scroll-padding-top: 114px; -webkit-text-size-adjust: 100%; }
 body { margin: 0; font-family: var(--f-body); font-size: 17px; line-height: 1.6; color: var(--text-light); background: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 img, svg { display: block; }
 img { max-width: 100%; }
@@ -90,7 +90,7 @@ button { font: inherit; }
 @keyframes menuIn { from { opacity: 0; transform: translateX(-14px); } }
 
 /* ───────── HERO ───────── */
-.hero { position: relative; overflow: hidden; padding: 150px 0 72px; background: var(--ink); isolation: isolate; }
+.hero { position: relative; overflow: hidden; padding: 180px 0 72px; background: var(--ink); isolation: isolate; }
 .hero__media { position: absolute; inset: 0; z-index: -3; }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 45%; transform: scale(1.12); animation: kenburns 18s var(--ease) forwards; filter: saturate(.85) contrast(1.05); }
 @keyframes kenburns { to { transform: scale(1.0); } }
@@ -176,14 +176,30 @@ button { font: inherit; }
 .hero__hours { display: inline-flex; align-items: center; gap: 8px; margin: 16px 0 0; color: var(--text-dim); font-size: .72rem; }
 .hero__hours .ico { width: 14px; height: 14px; color: var(--gold); }
 
+
 .logo-wall { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-.logo-tile { flex: 0 0 calc((100% - 60px) / 7); display: grid; place-items: center; height: 96px; padding: 14px 18px; background: var(--white); border-radius: 6px; box-shadow: 0 14px 30px -20px rgba(0,0,0,.8); transition: transform .35s var(--ease), box-shadow .35s; }
-.logo-tile:hover { transform: translateY(-4px); box-shadow: 0 0 0 2px var(--gold), 0 18px 34px -18px rgba(0,0,0,.8); }
-.logo-tile img { display: block; width: auto; height: auto; max-width: 100%; max-height: 44px; object-fit: contain; }
-.logo-tile--filli img, .logo-tile--fawori img { max-height: 60px; }
-.logo-tile--dyo img { max-height: 52px; }
-.logo-tile--dalmacyali img, .logo-tile--bocchi img { max-height: 50px; }
-.logo-tile--betek img { max-height: 52px; }
+.logo-tile { flex: 0 0 calc((100% - 50px) / 6); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; height: 100px; padding: 14px 16px 12px; background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.09); border-radius: 6px; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: transform .35s var(--ease), background .3s, border-color .3s; }
+.logo-tile:hover { transform: translateY(-3px); background: rgba(255,255,255,.07); border-color: rgba(242,178,48,.55); }
+.logo-tile img { display: block; width: auto; height: auto; max-width: 100%; max-height: 34px; object-fit: contain; opacity: .9; transition: opacity .3s; }
+.logo-tile:hover img { opacity: 1; }
+.logo-tile__cap { font-family: var(--f-mono); font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim); line-height: 1.25; text-align: center; }
+.logo-tile--filli img { max-height: 46px; }
+.logo-tile--fawori img, .logo-tile--betek img { max-height: 44px; }
+.logo-tile--dalmacyali img, .logo-tile--bocchi img, .logo-tile--bien img, .logo-tile--dizayn img { max-height: 38px; }
+.logo-tile--bosch img { max-height: 26px; }
+
+/* live exchange rates strip (top right) */
+.fxbar { height: 30px; background: rgba(10,10,12,.88); border-bottom: 1px solid rgba(255,255,255,.07); font-family: var(--f-mono); font-size: .7rem; letter-spacing: .04em; }
+.fxbar__inner { max-width: var(--wrap); height: 100%; margin: 0 auto; padding: 0 var(--pad); display: flex; align-items: center; justify-content: flex-end; gap: 18px; color: var(--text-dim); white-space: nowrap; }
+.fxbar__live { display: inline-flex; align-items: center; gap: 7px; text-transform: uppercase; letter-spacing: .12em; font-size: .62rem; }
+.fxbar__live i { width: 7px; height: 7px; border-radius: 50%; background: var(--text-dim); }
+.fxbar.is-live .fxbar__live i { background: var(--wa); box-shadow: 0 0 0 3px rgba(37,211,102,.2); animation: pulseGreen 2.2s infinite; }
+.fx { display: inline-flex; align-items: baseline; gap: 6px; }
+.fx b { font-weight: 500; color: var(--gold); }
+.fx__v { color: var(--white); font-variant-numeric: tabular-nums; }
+.fx__t { display: inline-block; width: .8em; font-size: .85em; }
+.fx__t.is-up { color: var(--wa); }
+.fx__t.is-down { color: #ff6b57; }
 
 .hazard { height: 14px; background: repeating-linear-gradient(-45deg, var(--gold) 0 18px, var(--ink) 18px 36px); background-size: 51px 100%; animation: hazard 2.5s linear infinite; }
 @keyframes hazard { to { background-position: 51px 0; } }
@@ -378,7 +394,7 @@ button { font: inherit; }
 }
 
 /* ───────── İNŞAAT DEMİRİ SAYFASI ───────── */
-.pg-hero { padding-top: clamp(130px, 14vw, 170px); }
+.pg-hero { padding-top: clamp(160px, 16vw, 200px); }
 .crumbs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; font-size: .7rem; color: var(--text-dim); }
 .crumbs a { color: var(--text-light); text-decoration: none; }
 .crumbs a:hover { color: var(--gold); }
@@ -446,8 +462,18 @@ button { font: inherit; }
 }
 @media (max-width: 560px) {
   body { font-size: 16px; }
-  .hero { padding-top: 116px; padding-bottom: 48px; }
+  .hero { padding-top: 146px; padding-bottom: 48px; }
   .hero__block { margin-top: 40px; }
+  .logo-wall { gap: 8px; }
+  .logo-tile { flex-basis: calc((100% - 16px) / 3); height: 82px; padding: 10px 8px 9px; gap: 7px; }
+  .logo-tile img { max-height: 26px; }
+  .logo-tile--filli img, .logo-tile--fawori img, .logo-tile--betek img { max-height: 36px; }
+  .logo-tile--dalmacyali img, .logo-tile--bocchi img, .logo-tile--bien img, .logo-tile--dizayn img { max-height: 30px; }
+  .logo-tile--bosch img { max-height: 20px; }
+  .logo-tile__cap { font-size: .52rem; letter-spacing: .1em; }
+  .fxbar__inner { justify-content: center; gap: 12px; }
+  .fxbar { font-size: .64rem; }
+  .fxbar__live span { display: none; }
   .hero__kicker { gap: 10px; }
   .hero__kicker .mono { font-size: .62rem; letter-spacing: .08em; white-space: normal; }
   .hz { width: 28px; height: 8px; }
@@ -456,11 +482,6 @@ button { font: inherit; }
   .hb__tel { font-size: 1.35rem; }
   .hb__map { font-size: 0; gap: 0; width: 44px; height: 44px; justify-content: center; border-radius: 50%; background: rgba(242,178,48,.14); }
   .hb__map .ico { width: 20px; height: 20px; }
-  .logo-wall { gap: 8px; }
-  .logo-tile { flex-basis: calc((100% - 16px) / 3); height: 72px; padding: 10px 12px; }
-  .logo-tile img { max-height: 32px; }
-  .logo-tile--filli img, .logo-tile--fawori img { max-height: 46px; }
-  .logo-tile--dyo img, .logo-tile--dalmacyali img, .logo-tile--bocchi img, .logo-tile--betek img { max-height: 42px; }
   .cards { grid-template-columns: 1fr; }
   .field-row { grid-template-columns: 1fr; }
   .spec__row { grid-template-columns: 40px 1fr; }

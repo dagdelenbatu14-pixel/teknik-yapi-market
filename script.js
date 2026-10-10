@@ -191,3 +191,58 @@ if (form) form.addEventListener('submit', (e) => {
   hint.textContent = 'WhatsApp açılıyor…';
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
 });
+
+/* ── Live exchange rates (TRY per 1 USD/EUR/GBP) ──
+   Coinbase spot (CORS-open, ~1 min fresh) with open.er-api.com (daily) as fallback. */
+const fxEls = $$('.fx');
+if (fxEls.length) {
+  const fxBar = $('.fxbar');
+  const CODES = ['USD', 'EUR', 'GBP'];
+  const fmt = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  let last = null;
+  try { last = JSON.parse(localStorage.getItem('tym-fx') || 'null'); } catch (_) { /* storage blocked */ }
+
+  const fromCoinbase = async () => {
+    const r = await fetch('https://api.coinbase.com/v2/exchange-rates?currency=TRY', { cache: 'no-store' });
+    const { data } = await r.json();
+    return Object.fromEntries(CODES.map((c) => [c, 1 / Number(data.rates[c])]));
+  };
+  const fromErApi = async () => {
+    const r = await fetch('https://open.er-api.com/v6/latest/TRY');
+    const { rates } = await r.json();
+    return Object.fromEntries(CODES.map((c) => [c, 1 / Number(rates[c])]));
+  };
+
+  const paint = (rates, prev) => {
+    fxEls.forEach((el) => {
+      const c = el.dataset.c, v = rates[c];
+      if (!Number.isFinite(v)) return;
+      $('.fx__v', el).textContent = fmt.format(v);
+      const t = $('.fx__t', el);
+      t.classList.remove('is-up', 'is-down');
+      t.textContent = '';
+      if (prev && Number.isFinite(prev[c]) && Math.abs(v - prev[c]) >= 0.005) {
+        const up = v > prev[c];
+        t.textContent = up ? '▲' : '▼';
+        t.classList.add(up ? 'is-up' : 'is-down');
+      }
+    });
+  };
+
+  if (last && last.rates) paint(last.rates, null);
+
+  async function loadFx() {
+    let rates = null;
+    for (const src of [fromCoinbase, fromErApi]) {
+      try { rates = await src(); if (CODES.every((c) => Number.isFinite(rates[c]) && rates[c] > 0)) break; rates = null; } catch (_) { rates = null; }
+    }
+    if (!rates) return;
+    paint(rates, last && last.rates);
+    fxBar.classList.add('is-live');
+    last = { rates, at: Date.now() };
+    try { localStorage.setItem('tym-fx', JSON.stringify(last)); } catch (_) { /* storage blocked */ }
+  }
+  loadFx();
+  setInterval(() => { if (!document.hidden) loadFx(); }, 60_000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) loadFx(); });
+}
