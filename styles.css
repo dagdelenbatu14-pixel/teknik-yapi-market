@@ -383,6 +383,11 @@ button { font: inherit; }
 .foot__col h4 { margin: 0 0 6px; font-family: var(--f-mono); font-weight: 500; font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
 .foot__col a { text-decoration: none; color: var(--text-light); }
 .foot__col a:hover { color: var(--gold); }
+.foot__col h4 a { color: inherit; }
+.foot__col a.foot__rev { margin-top: 4px; font-size: .84rem; color: var(--gold-2); }
+.branch-pages { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 22px 0 0; font-family: var(--f-mono); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-dark-dim); }
+.branch-pages a { padding: 8px 12px; border: 1px solid rgba(18,18,20,.18); border-radius: 999px; color: var(--text-dark); text-decoration: none; transition: background .2s, border-color .2s; }
+.branch-pages a:hover { background: var(--ink); border-color: var(--ink); color: var(--gold); }
 .foot__legal { display: flex; justify-content: space-between; gap: 16px; padding-top: 22px; font-size: .86rem; flex-wrap: wrap; }
 
 /* mobile action bar */
