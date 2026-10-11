@@ -31,3 +31,9 @@ koyu renkli yazı kısımları beyaza çevrilmiştir.
 | Qua | qua.com.tr |
 | Dizayn Grup | dizayngrup.com |
 | İzeltaş | izeltas.com.tr |
+
+## Galeri (`assets/gallery/`)
+
+Ortakent toptan şubesinin fotoğrafları işletme tarafından 2026-10'da çekilip
+paylaşılmıştır. Araç plakaları bulanıklaştırılmış, konum/cihaz bilgileri (EXIF)
+silinmiştir. Mağaza içi fotoğraflar işletmenin Instagram hesabındandır.

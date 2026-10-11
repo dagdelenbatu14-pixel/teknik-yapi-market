@@ -85,7 +85,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hi
 /* ── Reveal on scroll (staggered per group) ── */
 const groups = [
   ['.sec-head', 'reveal'], ['.card', 'reveal'], ['.steel__head', 'reveal'], ['.spec__row', 'reveal'],
-  ['.steel__photo', 'reveal-x'], ['.step', 'reveal'], ['.how__banner', 'reveal'], ['.mosaic__item', 'reveal'], ['.branch', 'reveal'], ['.branch-detail', 'reveal'],
+  ['.steel__photo', 'reveal-x'], ['.step', 'reveal'], ['.how__banner', 'reveal'], ['.g-item', 'reveal'], ['.branch', 'reveal'], ['.branch-detail', 'reveal'],
   ['.faq__head', 'reveal'], ['.faq__item', 'reveal'],
   ['.quote__copy', 'reveal'], ['.qform', 'reveal'],
 ];
@@ -192,15 +192,24 @@ if (form) form.addEventListener('submit', (e) => {
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
 });
 
-/* ── Live exchange rates (TRY per 1 USD/EUR/GBP) ──
-   Coinbase spot (CORS-open, ~1 min fresh) with open.er-api.com (daily) as fallback. */
-const fxEls = $$('.fx');
-if (fxEls.length) {
-  const fxBar = $('.fxbar');
+/* ── Live FX ticker (TRY per 1 USD/EUR/GBP) ──
+   Live: Coinbase spot (CORS-open, ~1 min fresh), open.er-api.com (daily) as fallback.
+   Daily change + 30-day sparkline: ECB closes via api.frankfurter.dev. */
+const ticker = $('.ticker');
+if (ticker) {
   const CODES = ['USD', 'EUR', 'GBP'];
+  const rows = Object.fromEntries(CODES.map((c) => [c, $(`.tk[data-c="${c}"]`, ticker)]));
   const fmt = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  let last = null;
-  try { last = JSON.parse(localStorage.getItem('tym-fx') || 'null'); } catch (_) { /* storage blocked */ }
+  const pct = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2, signDisplay: 'exceptZero' });
+  const clock = new Intl.DateTimeFormat('tr-TR', { timeZone: 'Europe/Istanbul', hour: '2-digit', minute: '2-digit' });
+  const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Istanbul' }).format(new Date()); // YYYY-MM-DD
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (_) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) { /* storage blocked */ } },
+  };
+  let live = store.get('tym-fx-live');
+  let hist = store.get('tym-fx-hist');
+  if (!hist || hist.day !== today) hist = null;
 
   const fromCoinbase = async () => {
     const r = await fetch('https://api.coinbase.com/v2/exchange-rates?currency=TRY', { cache: 'no-store' });
@@ -212,37 +221,152 @@ if (fxEls.length) {
     const { rates } = await r.json();
     return Object.fromEntries(CODES.map((c) => [c, 1 / Number(rates[c])]));
   };
+  const valid = (o) => o && CODES.every((c) => Number.isFinite(o[c]) && o[c] > 0);
 
-  const paint = (rates, prev) => {
-    fxEls.forEach((el) => {
-      const c = el.dataset.c, v = rates[c];
-      if (!Number.isFinite(v)) return;
-      $('.fx__v', el).textContent = fmt.format(v);
-      const t = $('.fx__t', el);
-      t.classList.remove('is-up', 'is-down');
-      t.textContent = '';
+  async function loadHistory() {
+    if (hist) return;
+    const start = new Date(Date.now() - 45 * 864e5).toISOString().slice(0, 10);
+    try {
+      const series = await Promise.all(CODES.map(async (c) => {
+        const r = await fetch(`https://api.frankfurter.dev/v1/${start}..?base=${c}&symbols=TRY`);
+        const { rates } = await r.json();
+        return Object.entries(rates).sort(([a], [b]) => (a < b ? -1 : 1)).map(([d, v]) => [d, v.TRY]);
+      }));
+      hist = { day: today, closes: Object.fromEntries(CODES.map((c, i) => [c, series[i]])) };
+      store.set('tym-fx-hist', hist);
+    } catch (_) { hist = null; }
+  }
+
+  function spark(el, values) {
+    const pl = $('polyline', el);
+    if (values.length < 2) { pl.setAttribute('points', ''); return; }
+    const min = Math.min(...values), max = Math.max(...values), span = max - min || 1;
+    pl.setAttribute('points', values.map((v, i) => `${((i / (values.length - 1)) * 64).toFixed(1)},${(20 - ((v - min) / span) * 18).toFixed(1)}`).join(' '));
+  }
+
+  function paint(rates, prev) {
+    CODES.forEach((c) => {
+      const row = rows[c], v = rates[c];
+      if (!row || !Number.isFinite(v)) return;
+      const vEl = $('.tk__v', row);
+      vEl.textContent = fmt.format(v);
       if (prev && Number.isFinite(prev[c]) && Math.abs(v - prev[c]) >= 0.005) {
-        const up = v > prev[c];
-        t.textContent = up ? '▲' : '▼';
-        t.classList.add(up ? 'is-up' : 'is-down');
+        const cls = v > prev[c] ? 'flash-up' : 'flash-down';
+        vEl.classList.add(cls);
+        setTimeout(() => vEl.classList.remove(cls), 900);
       }
+      // daily change vs. the last close before today
+      const closes = hist && hist.closes[c] ? hist.closes[c].filter(([d]) => d < today) : [];
+      const base = closes.length ? closes[closes.length - 1][1] : null;
+      row.classList.remove('is-up', 'is-down');
+      const ch = $('.tk__ch', row);
+      if (base) {
+        const change = ((v - base) / base) * 100;
+        if (Math.abs(change) >= 0.01) row.classList.add(change > 0 ? 'is-up' : 'is-down');
+        ch.textContent = `${change > 0 ? '▲' : change < 0 ? '▼' : '■'} %${pct.format(Math.abs(change) < 0.005 ? 0 : change).replace(/^[+-]/, '')}`;
+        ch.setAttribute('aria-label', `Günlük değişim yüzde ${pct.format(change)}`);
+      } else {
+        ch.textContent = '';
+      }
+      spark($('.tk__spark', row), [...closes.slice(-30).map(([, x]) => x), v]);
     });
-  };
+  }
 
-  if (last && last.rates) paint(last.rates, null);
-
-  async function loadFx() {
+  async function loadLive() {
     let rates = null;
     for (const src of [fromCoinbase, fromErApi]) {
-      try { rates = await src(); if (CODES.every((c) => Number.isFinite(rates[c]) && rates[c] > 0)) break; rates = null; } catch (_) { rates = null; }
+      try { rates = await src(); if (valid(rates)) break; rates = null; } catch (_) { rates = null; }
     }
     if (!rates) return;
-    paint(rates, last && last.rates);
-    fxBar.classList.add('is-live');
-    last = { rates, at: Date.now() };
-    try { localStorage.setItem('tym-fx', JSON.stringify(last)); } catch (_) { /* storage blocked */ }
+    const prev = live && live.rates;
+    live = { rates, at: Date.now() };
+    store.set('tym-fx-live', live);
+    paint(rates, prev);
+    ticker.classList.add('is-live');
+    $('#fx-time', ticker).textContent = clock.format(new Date(live.at));
   }
-  loadFx();
-  setInterval(() => { if (!document.hidden) loadFx(); }, 60_000);
-  document.addEventListener('visibilitychange', () => { if (!document.hidden) loadFx(); });
+
+  if (live && valid(live.rates)) paint(live.rates, null);
+  loadHistory().then(() => { if (live && valid(live.rates)) paint(live.rates, null); });
+  loadLive();
+  setInterval(() => { if (!document.hidden) loadLive(); }, 60_000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) loadLive(); });
+}
+
+/* ── Gallery: filters + lightbox ── */
+const grid = $('#g-grid');
+if (grid) {
+  const items = $$('.g-item', grid);
+  const filters = $$('.g-filter');
+  // Masonry on a CSS grid: each tile spans enough 8px rows for its aspect ratio, so order stays row-by-row.
+  function layout() {
+    const first = items.find((it) => !it.hidden);
+    if (!first) return;
+    const cs = getComputedStyle(grid);
+    const rowH = parseFloat(cs.gridAutoRows) || 8;
+    const gap = parseFloat(cs.getPropertyValue('--g-gap')) || 14;
+    const colW = first.getBoundingClientRect().width;
+    items.forEach((it) => {
+      if (it.hidden) return;
+      const img = $('img', it);
+      const ratio = Number(img.getAttribute('height')) / Number(img.getAttribute('width')) || 1;
+      it.style.setProperty('--span', Math.ceil((colW * ratio + gap) / rowH));
+    });
+  }
+  layout();
+  let raf = 0;
+  window.addEventListener('resize', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(layout); });
+  filters.forEach((btn) => btn.addEventListener('click', () => {
+    const f = btn.dataset.filter;
+    filters.forEach((b) => { const on = b === btn; b.classList.toggle('is-active', on); b.setAttribute('aria-pressed', String(on)); });
+    items.forEach((it) => {
+      const show = f === 'all' || it.dataset.cat.split(' ').includes(f);
+      if (show && it.hidden) { it.classList.remove('is-entering'); void it.offsetWidth; it.classList.add('is-entering'); }
+      it.hidden = !show;
+    });
+    layout();
+  }));
+
+  const lb = $('#lb');
+  const lbImg = $('#lb-img');
+  let list = [], idx = 0;
+  const visibleLinks = () => items.filter((it) => !it.hidden).map((it) => $('.g-link', it));
+  function show(i) {
+    idx = (i + list.length) % list.length;
+    const a = list[idx];
+    lbImg.src = a.getAttribute('href');
+    lbImg.alt = $('img', a).alt;
+    lbImg.style.animation = 'none'; void lbImg.offsetWidth; lbImg.style.animation = '';
+    $('#lb-title').textContent = a.dataset.title;
+    $('#lb-tag').textContent = a.dataset.tag;
+    $('#lb-count').textContent = `${String(idx + 1).padStart(2, '0')} / ${String(list.length).padStart(2, '0')}`;
+    [idx + 1, idx - 1].forEach((n) => { const p = list[(n + list.length) % list.length]; if (p) new Image().src = p.getAttribute('href'); });
+  }
+  if (lb && typeof lb.showModal === 'function') {
+    grid.addEventListener('click', (e) => {
+      const a = e.target.closest('.g-link');
+      if (!a) return;
+      e.preventDefault();
+      list = visibleLinks();
+      show(list.indexOf(a));
+      lb.showModal();
+    });
+    lb.addEventListener('click', (e) => {
+      const act = e.target.closest('[data-lb]');
+      if (act) { const k = act.dataset.lb; if (k === 'close') lb.close(); else show(idx + (k === 'next' ? 1 : -1)); return; }
+      if (e.target === lb || e.target.classList.contains('lb__fig')) lb.close();
+    });
+    lb.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') show(idx + 1);
+      else if (e.key === 'ArrowLeft') show(idx - 1);
+    });
+    let x0 = null;
+    lb.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+    lb.addEventListener('close', () => { lbImg.removeAttribute('src'); });
+  }
 }

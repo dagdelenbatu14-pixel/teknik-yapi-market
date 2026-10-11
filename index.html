@@ -459,7 +459,13 @@
     "@id": "https://dagdelenbatu14-pixel.github.io/teknik-yapi-market/#organization"
    },
    "url": "https://dagdelenbatu14-pixel.github.io/teknik-yapi-market/#subeler",
-   "image": "https://dagdelenbatu14-pixel.github.io/teknik-yapi-market/assets/img/hero.jpg",
+   "image": [
+    "https://dagdelenbatu14-pixel.github.io/teknik-yapi-market/assets/gallery/ortakent-tabela-1600.jpg",
+    "https://dagdelenbatu14-pixel.github.io/teknik-yapi-market/assets/gallery/ortakent-depo-2-1600.jpg",
+    "https://dagdelenbatu14-pixel.github.io/teknik-yapi-market/assets/gallery/ortakent-ofis-1600.jpg",
+    "https://dagdelenbatu14-pixel.github.io/teknik-yapi-market/assets/gallery/ortakent-saha-1600.jpg",
+    "https://dagdelenbatu14-pixel.github.io/teknik-yapi-market/assets/img/hero.jpg"
+   ],
    "logo": "https://dagdelenbatu14-pixel.github.io/teknik-yapi-market/assets/logo-1080.png",
    "telephone": "+905384410587",
    "priceRange": "₺₺",
@@ -694,14 +700,6 @@
 
 <!-- ───────── NAV ───────── -->
 <header class="nav" id="nav">
-  <div class="fxbar" role="region" aria-label="Güncel döviz kurları">
-    <div class="fxbar__inner">
-      <span class="fxbar__live" title="Kurlar dakikada bir güncellenir"><i aria-hidden="true"></i><span>Canlı kur</span></span>
-      <span class="fx" data-c="USD"><b>USD</b><span class="fx__v">–</span><span class="fx__t" aria-hidden="true"></span></span>
-      <span class="fx" data-c="EUR"><b>EUR</b><span class="fx__v">–</span><span class="fx__t" aria-hidden="true"></span></span>
-      <span class="fx" data-c="GBP"><b>GBP</b><span class="fx__v">–</span><span class="fx__t" aria-hidden="true"></span></span>
-    </div>
-  </div>
   <div class="nav__inner">
     <a class="nav__brand" href="#top" aria-label="Teknik Yapı Market ana sayfa">
       <svg class="logo" viewBox="0 0 240 92" role="img" aria-label="Teknik Yapı Market"><use href="#logo-mark" /></svg>
@@ -737,12 +735,40 @@
   <div class="hero__grid" aria-hidden="true"></div>
 
   <div class="hero__inner">
-    <h1 class="hero__title">
-      <span class="sr-only">Teknik Yapı Market – Bodrum inşaat demiri ve inşaat malzemeleri</span>
-      <span class="mask" aria-hidden="true"><span class="line line--steel">TEKN<span class="ring-i">I<i></i></span>K</span></span>
-      <span class="mask" aria-hidden="true"><span class="line line--gold">YAPI MARKET</span></span>
-    </h1>
-    <p class="hero__kicker"><span class="hz" aria-hidden="true"></span><span class="mono">İnşaat demiri · İnşaat malzemeleri · Bodrum</span></p>
+    <div class="hero__top">
+      <div class="hero__brand">
+        <h1 class="hero__title">
+          <span class="sr-only">Teknik Yapı Market – Bodrum inşaat demiri ve inşaat malzemeleri</span>
+          <span class="mask" aria-hidden="true"><span class="line line--steel">TEKN<span class="ring-i">I<i></i></span>K</span></span>
+          <span class="mask" aria-hidden="true"><span class="line line--gold">YAPI MARKET</span></span>
+        </h1>
+        <p class="hero__kicker"><span class="hz" aria-hidden="true"></span><span class="mono">İnşaat demiri · İnşaat malzemeleri · Bodrum</span></p>
+      </div>
+      <aside class="ticker" aria-label="Canlı döviz kurları">
+        <div class="ticker__head"><span class="ticker__live"><i aria-hidden="true"></i>Canlı kur</span><time class="ticker__time" id="fx-time">--:--</time></div>
+        <ul class="ticker__list">
+          <li class="tk" data-c="USD">
+            <span class="tk__pair"><b>USD</b>/TRY</span>
+            <svg class="tk__spark" viewBox="0 0 64 22" preserveAspectRatio="none" aria-hidden="true"><polyline points="" /></svg>
+            <span class="tk__v">–</span>
+            <span class="tk__ch">–</span>
+          </li>
+          <li class="tk" data-c="EUR">
+            <span class="tk__pair"><b>EUR</b>/TRY</span>
+            <svg class="tk__spark" viewBox="0 0 64 22" preserveAspectRatio="none" aria-hidden="true"><polyline points="" /></svg>
+            <span class="tk__v">–</span>
+            <span class="tk__ch">–</span>
+          </li>
+          <li class="tk" data-c="GBP">
+            <span class="tk__pair"><b>GBP</b>/TRY</span>
+            <svg class="tk__spark" viewBox="0 0 64 22" preserveAspectRatio="none" aria-hidden="true"><polyline points="" /></svg>
+            <span class="tk__v">–</span>
+            <span class="tk__ch">–</span>
+          </li>
+        </ul>
+        <p class="ticker__foot">Günlük değişim · 30 günlük grafik</p>
+      </aside>
+    </div>
 
     <div class="hero__block hero__block--branches">
       <div class="hero__head">
@@ -970,20 +996,100 @@
   <div class="wrap">
     <div class="sec-head sec-head--split">
       <div>
-        <p class="eyebrow">Galeri · Mağazalarımızdan</p>
+        <p class="eyebrow">Galeri · Sahadan ve mağazalarımızdan</p>
         <h2 class="h2">Binlerce ürün,<br /><em>tek çatı altında.</em></h2>
       </div>
       <a class="btn btn--line" href="https://www.instagram.com/teknikyapimarketbodrum/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-ig" /></svg>Instagram'da daha fazlası</a>
     </div>
-    <div class="mosaic">
-      <figure class="mosaic__item mosaic__item--tall"><img src="assets/img/magaza-koridor.jpg" alt="Mağaza koridoru ve ürün rafları" loading="lazy" width="720" height="720" /><figcaption>Mağaza</figcaption></figure>
-      <figure class="mosaic__item mosaic__item--wide"><img src="assets/img/hero.jpg" alt="Forkliftle yükleme yapılan malzeme sahası" loading="lazy" width="1440" height="810" /><figcaption>Malzeme sahası</figcaption></figure>
-      <figure class="mosaic__item"><img src="assets/img/magaza-bahce.jpg" alt="Bahçe ürünleri ve boya reyonu" loading="lazy" width="900" height="900" /><figcaption>Bahçe &amp; boya</figcaption></figure>
-      <figure class="mosaic__item"><img src="assets/img/teslimat-arac.jpg" alt="Teslimat kamyonu" loading="lazy" width="640" height="576" /><figcaption>Teslimat aracımız</figcaption></figure>
-      <figure class="mosaic__item"><img src="assets/img/demir-uc.jpg" alt="İnşaat demiri kesitleri" loading="lazy" width="770" height="385" /><figcaption>İnşaat demiri</figcaption></figure>
-      <figure class="mosaic__item"><img src="assets/img/magaza-stand.jpg" alt="Mağaza girişindeki ürün standı" loading="lazy" width="720" height="720" /><figcaption>Ürün standları</figcaption></figure>
+    <div class="g-filters" role="group" aria-label="Galeriyi filtrele">
+      <button type="button" class="g-filter is-active" data-filter="all" aria-pressed="true">Tümü <span>17</span></button>
+      <button type="button" class="g-filter" data-filter="ortakent" aria-pressed="false">Ortakent Toptan <span>8</span></button>
+      <button type="button" class="g-filter" data-filter="magaza" aria-pressed="false">Mağaza <span>7</span></button>
+      <button type="button" class="g-filter" data-filter="urun" aria-pressed="false">Ürün &amp; saha <span>5</span></button>
+    </div>
+    <div class="g-grid" id="g-grid">
+      <figure class="g-item" data-cat="ortakent">
+        <a class="g-link" href="assets/gallery/ortakent-tabela-1600.jpg" data-title="Yol tabelamız" data-tag="Ortakent · Bodrum Cad."><img src="assets/gallery/ortakent-tabela-800.jpg" srcset="assets/gallery/ortakent-tabela-800.jpg 600w, assets/gallery/ortakent-tabela-1600.jpg 855w" sizes="(max-width: 560px) 50vw, (max-width: 1080px) 33vw, 300px" alt="Bodrum Caddesi kenarında Teknik Yapı Market Ortakent tabelası: demir, profil, kaba inşaat malzemeleri, 0538 441 05 87" width="600" height="800" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Ortakent · Bodrum Cad.</span><span class="g-cap__title">Yol tabelamız</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="magaza">
+        <a class="g-link" href="assets/img/magaza-bahce.jpg" data-title="Bahçe & boya reyonu" data-tag="Mağaza"><img src="assets/img/magaza-bahce.jpg" alt="Mağazada bahçe ürünleri ve boya reyonu" width="900" height="900" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Mağaza</span><span class="g-cap__title">Bahçe & boya reyonu</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="ortakent">
+        <a class="g-link" href="assets/gallery/ortakent-ofis-1600.jpg" data-title="Satış ofisi" data-tag="Ortakent"><img src="assets/gallery/ortakent-ofis-800.jpg" srcset="assets/gallery/ortakent-ofis-800.jpg 600w, assets/gallery/ortakent-ofis-1600.jpg 1200w" sizes="(max-width: 560px) 50vw, (max-width: 1080px) 33vw, 300px" alt="Teknik Yapı Market Ortakent satış ofisi ve girişi" width="600" height="800" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Ortakent</span><span class="g-cap__title">Satış ofisi</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="magaza">
+        <a class="g-link" href="assets/img/magaza-stand.jpg" data-title="Ürün standları" data-tag="Mağaza"><img src="assets/img/magaza-stand.jpg" alt="Mağaza girişindeki ürün standları" width="720" height="720" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Mağaza</span><span class="g-cap__title">Ürün standları</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="ortakent">
+        <a class="g-link" href="assets/gallery/ortakent-depo-2-1600.jpg" data-title="Depo ve stok sahası" data-tag="Ortakent"><img src="assets/gallery/ortakent-depo-2-800.jpg" srcset="assets/gallery/ortakent-depo-2-800.jpg 600w, assets/gallery/ortakent-depo-2-1600.jpg 1200w" sizes="(max-width: 560px) 50vw, (max-width: 1080px) 33vw, 300px" alt="Ortakent toptan depo binası, gazbeton ve hasır stoğu" width="600" height="800" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Ortakent</span><span class="g-cap__title">Depo ve stok sahası</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="magaza">
+        <a class="g-link" href="assets/img/tesisat.jpg" data-title="Tesisat reyonu" data-tag="Mağaza"><img src="assets/img/tesisat.jpg" alt="Tesisat ve elektrik malzemeleri rafları" width="720" height="540" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Mağaza</span><span class="g-cap__title">Tesisat reyonu</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="ortakent urun">
+        <a class="g-link" href="assets/gallery/ortakent-gazbeton-1600.jpg" data-title="Gazbeton stoğu" data-tag="Ortakent · Ürün"><img src="assets/gallery/ortakent-gazbeton-800.jpg" srcset="assets/gallery/ortakent-gazbeton-800.jpg 600w, assets/gallery/ortakent-gazbeton-1600.jpg 1200w" sizes="(max-width: 560px) 50vw, (max-width: 1080px) 33vw, 300px" alt="Ortakent deposunda paletli gazbeton stoğu ve su depoları" width="600" height="800" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Ortakent · Ürün</span><span class="g-cap__title">Gazbeton stoğu</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="magaza">
+        <a class="g-link" href="assets/img/magaza-koridor.jpg" data-title="Mağaza koridoru" data-tag="Mağaza"><img src="assets/img/magaza-koridor.jpg" alt="Teknik Yapı Market mağazasında hırdavat ve yapı malzemesi rafları" width="720" height="720" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Mağaza</span><span class="g-cap__title">Mağaza koridoru</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="ortakent urun">
+        <a class="g-link" href="assets/gallery/ortakent-panel-cit-1600.jpg" data-title="Panel çit" data-tag="Ortakent · Ürün"><img src="assets/gallery/ortakent-panel-cit-800.jpg" srcset="assets/gallery/ortakent-panel-cit-800.jpg 600w, assets/gallery/ortakent-panel-cit-1600.jpg 1200w" sizes="(max-width: 560px) 50vw, (max-width: 1080px) 33vw, 300px" alt="Ortakent deposunda paletli yeşil panel çit ve direkleri" width="600" height="800" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Ortakent · Ürün</span><span class="g-cap__title">Panel çit</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="magaza">
+        <a class="g-link" href="assets/img/hirdavat.jpg" data-title="Hırdavat reyonu" data-tag="Mağaza"><img src="assets/img/hirdavat.jpg" alt="Hırdavat ve el aletleri reyonu" width="720" height="540" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Mağaza</span><span class="g-cap__title">Hırdavat reyonu</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="magaza">
+        <a class="g-link" href="assets/img/boya.jpg" data-title="Boya reyonu" data-tag="Mağaza"><img src="assets/img/boya.jpg" alt="İç ve dış cephe boyası rafları" width="640" height="480" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Mağaza</span><span class="g-cap__title">Boya reyonu</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="ortakent">
+        <a class="g-link" href="assets/gallery/ortakent-depo-1600.jpg" data-title="Kapalı depo" data-tag="Ortakent"><img src="assets/gallery/ortakent-depo-800.jpg" srcset="assets/gallery/ortakent-depo-800.jpg 600w, assets/gallery/ortakent-depo-1600.jpg 1200w" sizes="(max-width: 560px) 50vw, (max-width: 1080px) 33vw, 300px" alt="Ortakent toptan şubesinde inşaat malzemesi kapalı deposu" width="600" height="800" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Ortakent</span><span class="g-cap__title">Kapalı depo</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="urun">
+        <a class="g-link" href="assets/img/izolasyon.jpg" data-title="İzolasyon malzemeleri" data-tag="Ürün"><img src="assets/img/izolasyon.jpg" alt="Paletli ısı yalıtım ve mantolama malzemeleri" width="800" height="600" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Ürün</span><span class="g-cap__title">İzolasyon malzemeleri</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="ortakent urun">
+        <a class="g-link" href="assets/gallery/ortakent-saha-1600.jpg" data-title="Sevkiyat sahası" data-tag="Ortakent · Sevkiyat"><img src="assets/gallery/ortakent-saha-800.jpg" srcset="assets/gallery/ortakent-saha-800.jpg 600w, assets/gallery/ortakent-saha-1600.jpg 1200w" sizes="(max-width: 560px) 50vw, (max-width: 1080px) 33vw, 300px" alt="Ortakent toptan sahasında sevkiyat kamyonları" width="600" height="800" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Ortakent · Sevkiyat</span><span class="g-cap__title">Sevkiyat sahası</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="ortakent">
+        <a class="g-link" href="assets/gallery/ortakent-yol-1600.jpg" data-title="Ana yol üzerinde" data-tag="Ortakent · Bodrum Cad."><img src="assets/gallery/ortakent-yol-800.jpg" srcset="assets/gallery/ortakent-yol-800.jpg 600w, assets/gallery/ortakent-yol-1600.jpg 1200w" sizes="(max-width: 560px) 50vw, (max-width: 1080px) 33vw, 300px" alt="Bodrum Caddesi üzerinden Teknik Yapı Market Ortakent tabelası" width="600" height="800" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Ortakent · Bodrum Cad.</span><span class="g-cap__title">Ana yol üzerinde</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="magaza">
+        <a class="g-link" href="assets/img/elektrikli-alet.jpg" data-title="Elektrikli aletler" data-tag="Mağaza"><img src="assets/img/elektrikli-alet.jpg" alt="Elektrikli el aletleri standı" width="640" height="480" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Mağaza</span><span class="g-cap__title">Elektrikli aletler</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="urun">
+        <a class="g-link" href="assets/img/hero.jpg" data-title="Forkliftle yükleme" data-tag="Malzeme sahası"><img src="assets/img/hero.jpg" alt="Malzeme sahasında forkliftle yükleme" width="1440" height="810" loading="lazy" decoding="async" /><span class="g-zoom" aria-hidden="true"><svg class="ico"><use href="#i-zoom" /></svg></span></a>
+        <figcaption class="g-cap"><span class="g-cap__tag">Malzeme sahası</span><span class="g-cap__title">Forkliftle yükleme</span></figcaption>
+      </figure>
     </div>
   </div>
+  <dialog class="lb" id="lb" aria-label="Galeri görüntüleyici">
+    <div class="lb__bar">
+      <span class="lb__count mono" id="lb-count"></span>
+      <button type="button" class="lb__btn lb__close" data-lb="close" aria-label="Kapat"><svg class="ico" aria-hidden="true"><use href="#i-x" /></svg></button>
+    </div>
+    <figure class="lb__fig">
+      <img id="lb-img" alt="" />
+      <figcaption class="lb__cap"><span class="lb__tag mono" id="lb-tag"></span><span class="lb__title" id="lb-title"></span></figcaption>
+    </figure>
+    <button type="button" class="lb__btn lb__nav lb__prev" data-lb="prev" aria-label="Önceki fotoğraf"><svg class="ico" aria-hidden="true"><use href="#i-chev" /></svg></button>
+    <button type="button" class="lb__btn lb__nav lb__next" data-lb="next" aria-label="Sonraki fotoğraf"><svg class="ico" aria-hidden="true"><use href="#i-chev" /></svg></button>
+  </dialog>
 </section>
 
 <!-- ───────── ŞUBELER ───────── -->
@@ -1184,6 +1290,9 @@
     <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.6"/></g></symbol>
     <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></g></symbol>
+    <symbol id="i-zoom" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2M11 8.5v5M8.5 11h5"/></g></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m9 5 7 7-7 7"/></symbol>
   </defs>
 </svg>
 
