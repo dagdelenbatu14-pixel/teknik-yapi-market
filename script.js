@@ -117,15 +117,18 @@ const BRANCH_ACTIONS = {
     ['tel:+905384410589', '0538 441 05 89', 'phone'],
     ['tel:+902523736169', '0252 373 61 69', 'phone'],
     ['https://www.google.com/maps/dir/?api=1&destination=37.110053,27.6587734', 'Yol tarifi', 'pin'],
+    ['https://g.page/r/Ce0sg-VNweoPEBM/review', 'Yorum yaz', 'star'],
   ],
   Gümbet: [
     ['tel:+902523193335', '0252 319 33 35', 'phone'],
-    ['https://www.google.com/maps/dir/?api=1&destination=Teknik+Yapi+Market+Sald%C4%B1r+%C5%9Eeyh+Caddesi+3%2F1+G%C3%BCmbet+Bodrum', 'Yol tarifi', 'pin'],
+    ['https://www.google.com/maps/dir/?api=1&destination=37.0406455,27.4082924', 'Yol tarifi', 'pin'],
+    ['https://g.page/r/CUsik9BHuKj5EBM/review', 'Yorum yaz', 'star'],
   ],
   Ortakent: [
     ['tel:+905384410587', '0538 441 05 87', 'phone'],
     ['https://wa.me/905384410587', 'WhatsApp', 'wa'],
     ['https://www.google.com/maps/dir/?api=1&destination=37.0598653,27.340435', 'Yol tarifi', 'pin'],
+    ['https://g.page/r/CdQ6CA5TfgjiEBM/review', 'Yorum yaz', 'star'],
   ],
 };
 const mapFrame = $('#map');
@@ -141,7 +144,7 @@ $$('.branch').forEach((btn) => {
     actions.innerHTML = BRANCH_ACTIONS[name].map(([href, label, icon]) => {
       const ext = href.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
       const cls = icon === 'pin' ? 'btn--gold' : 'btn--dark';
-      const ico = icon === 'phone' ? 'i-phone' : icon === 'wa' ? 'i-wa' : 'i-pin';
+      const ico = { phone: 'i-phone', wa: 'i-wa', pin: 'i-pin', star: 'i-star' }[icon];
       return `<a class="btn ${cls}" href="${href}"${ext}><svg class="ico" aria-hidden="true"><use href="#${ico}" /></svg>${label}</a>`;
     }).join('');
   });
