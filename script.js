@@ -174,6 +174,84 @@ if (form) $$('[data-groups]').forEach((el) => {
   });
 });
 
+/* ── Ads conversion measurement, opt-in only (KVKK) ──
+   The Google tag is loaded only after the visitor taps "Kabul et"; until then nothing goes to Google.
+   Phone and WhatsApp taps are reported as Google Ads conversions (account 734-811-1494). */
+const ADS_ID = 'AW-836220103';
+const CONV = { phone: `${ADS_ID}/0bELCIHJoJodEMfp3o4D`, wa: `${ADS_ID}/ZoVWCITJoJodEMfp3o4D` };
+const CONSENT_KEY = 'tym-consent';
+const consent = {
+  get() { try { return localStorage.getItem(CONSENT_KEY); } catch (_) { return null; } },
+  set(v) { try { localStorage.setItem(CONSENT_KEY, v); } catch (_) { /* storage blocked: ask again next visit */ } },
+};
+let tagLoaded = false;
+
+function loadGoogleTag() {
+  if (tagLoaded) return;
+  tagLoaded = true;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag() { window.dataLayer.push(arguments); };
+  // Measurement only: no remarketing / ad personalisation, no Analytics.
+  gtag('consent', 'default', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'denied', analytics_storage: 'denied' });
+  gtag('js', new Date());
+  gtag('config', ADS_ID);
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = `https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`;
+  document.head.appendChild(s);
+}
+
+function reportConversion(kind) {
+  if (tagLoaded && consent.get() === 'granted') window.gtag('event', 'conversion', { send_to: CONV[kind] });
+}
+
+function setConsent(value) {
+  consent.set(value);
+  if (value === 'granted') loadGoogleTag();
+  else if (tagLoaded) {
+    window.gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied' });
+    // Drop the Google Ads click cookies this site already set.
+    document.cookie.split(';').map((c) => c.split('=')[0].trim()).filter((n) => /^_gcl/.test(n))
+      .forEach((n) => { document.cookie = `${n}=; Max-Age=0; path=/; domain=.${location.hostname}`; document.cookie = `${n}=; Max-Age=0; path=/`; });
+  }
+}
+
+function consentBanner() {
+  if ($('.cookie')) return;
+  const box = document.createElement('section');
+  box.className = 'cookie';
+  box.setAttribute('aria-label', 'Çerez tercihi');
+  box.innerHTML = `
+    <p><b>Çerez tercihi.</b> Reklamlarımızın işe yarayıp yaramadığını görmek için Google Ads çerezlerini kullanmak istiyoruz. İzin verirseniz sitedeki telefon ve WhatsApp düğmelerine tıklandığı Google'a bildirilir; reklam kişiselleştirme kapalı kalır.</p>
+    <details class="cookie__more">
+      <summary>Ayrıntılar</summary>
+      <p>Veri sorumlusu Teknik Yapı Market'tir (Bodrum). Kabul ederseniz Google LLC'nin ölçüm çerezleri (ör. _gcl_au) tarayıcınıza yerleştirilir; reklam tıklama kimliği ve dönüşüm bilgisi, yalnızca reklam ölçümü amacıyla Google'a (yurt dışına) aktarılır. Reddederseniz hiçbir veri gönderilmez ve site aynı şekilde çalışır. Kararınızı sayfanın altındaki "Çerez tercihleri" bağlantısından istediğiniz zaman değiştirebilirsiniz. Sorularınız için: 0538 441 05 87.</p>
+    </details>
+    <div class="cookie__btns">
+      <button type="button" class="btn btn--line" data-consent="denied">Reddet</button>
+      <button type="button" class="btn btn--gold" data-consent="granted">Kabul et</button>
+    </div>`;
+  box.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-consent]');
+    if (!b) return;
+    setConsent(b.dataset.consent);
+    box.remove();
+  });
+  document.body.appendChild(box);
+}
+
+if (consent.get() === 'granted') loadGoogleTag();
+else if (!consent.get()) consentBanner();
+$$('[data-cookie-prefs]').forEach((b) => b.addEventListener('click', consentBanner));
+
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href]');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (href.startsWith('tel:')) reportConversion('phone');
+  else if (/^https:\/\/(wa\.me|api\.whatsapp\.com)\//.test(href)) reportConversion('wa');
+});
+
 /* ── Quote form → WhatsApp message to the Ortakent wholesale line ── */
 const WA_NUMBER = '905384410587';
 if (form) form.addEventListener('submit', (e) => {
@@ -192,6 +270,7 @@ if (form) form.addEventListener('submit', (e) => {
   if (loc) lines.push(`Şantiye konumu: ${loc}`);
   if (name) lines.push(`Ad / firma: ${name}`);
   hint.textContent = 'WhatsApp açılıyor…';
+  reportConversion('wa');
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
 });
 
