@@ -258,6 +258,7 @@ button { font: inherit; }
 .logo-tile--fawori img, .logo-tile--betek img { max-height: 44px; }
 .logo-tile--dalmacyali img, .logo-tile--bocchi img, .logo-tile--bien img, .logo-tile--dizayn img { max-height: 38px; }
 .logo-tile--bosch img { max-height: 26px; }
+.logo-tile--abs img { max-height: 52px; }
 
 
 .hazard { height: 14px; background: repeating-linear-gradient(-45deg, var(--gold) 0 18px, var(--ink) 18px 36px); background-size: 51px 100%; animation: hazard 2.5s linear infinite; }
@@ -564,6 +565,7 @@ body:has(.cookie) .actionbar { visibility: hidden; }
   .logo-tile--filli img, .logo-tile--fawori img, .logo-tile--betek img { max-height: 36px; }
   .logo-tile--dalmacyali img, .logo-tile--bocchi img, .logo-tile--bien img, .logo-tile--dizayn img { max-height: 30px; }
   .logo-tile--bosch img { max-height: 20px; }
+  .logo-tile--abs img { max-height: 40px; }
   .logo-tile__cap { font-size: .52rem; letter-spacing: .1em; }
   .hero__kicker { gap: 10px; }
   .hero__kicker .mono { font-size: .62rem; letter-spacing: .08em; white-space: normal; }
