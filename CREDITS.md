@@ -24,9 +24,9 @@ koyu renkli yazı kısımları beyaza çevrilmiştir.
 | Ege Seramik | egeseramik.com |
 | Bocchi | bocchibagno.com |
 | AGT | agt.com.tr |
-| Sanica | sanicaboru.com.tr |
 | Weber | es.weber (Saint-Gobain Weber) |
 | Bosch | bosch-professional.com |
+| ABS Alçı | absalci.com.tr |
 | Knauf | knauf.com |
 | Qua | qua.com.tr |
 | Dizayn Grup | dizayngrup.com |
